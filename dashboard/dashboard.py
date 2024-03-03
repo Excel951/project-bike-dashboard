@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import datetime
+import os
 from sklearn.cluster import KMeans
 
 sns.set_theme(style='dark')
@@ -43,8 +44,12 @@ def create_clustering_characteristics_df(hour_df):
     
     return q3_df
 
-day_df = pd.read_csv('./day.csv')
-hour_df = pd.read_csv('./hour.csv')
+script_dir = os.path.dirname(__file__)
+day_csv_path = os.path.join(script_dir, 'day.csv')
+hour_csv_path = os.path.join(script_dir, 'hour.csv')
+
+day_df = pd.read_csv(day_csv_path)
+hour_df = pd.read_csv(hour_csv_path)
 
 day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 hour_df['dteday'] = pd.to_datetime(hour_df['dteday'])
